@@ -163,6 +163,7 @@ testWebP(function (support) {
     //const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   }
 })();
+
 // ibg
 function ibg() {
   let ibg = document.querySelectorAll("._ibg");
@@ -176,3 +177,12 @@ function ibg() {
 
 ibg();
 
+// isMobile
+const isMobile = { Android: function () { return navigator.userAgent.match(/Android/i); }, BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function () { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function () { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function () { return navigator.userAgent.match(/IEMobile/i); }, any: function () { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); } };
+
+//RemoveClasses
+function _removeClasses(el, class_name) {
+	for (let i = 0; i < el.length; i++) {
+		el[i].classList.remove(class_name);
+	}
+}

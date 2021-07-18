@@ -3,7 +3,19 @@ function email_test(input) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+    document.addEventListener('click', documentActions);
+
+    function documentActions(e) {
+        const targetEl = e.target;
+        if(window.innerWidth > 768 && isMobile.any()){
+            if(targetEl.classList.contains('menu__arrow')){
+                targetEl.closest('.menu__item').classList.toggle('_hover');
+            }
+            if(!targetEl.closest('.menu__item') && document.querySelectorAll('.menu__item._hover').length > 0){
+                _removeClasses(document.querySelectorAll('.menu__item._hover'), '_hover');
+            }
+        }
+    }
 
 }); // end
 //let btn = document.querySelectorAll('button[type="submit"],input[type="submit"]');
@@ -589,6 +601,7 @@ testWebP(function (support) {
     //const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   }
 })();
+
 // ibg
 function ibg() {
   let ibg = document.querySelectorAll("._ibg");
@@ -602,9 +615,35 @@ function ibg() {
 
 ibg();
 
+// isMobile
+const isMobile = { Android: function () { return navigator.userAgent.match(/Android/i); }, BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function () { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function () { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function () { return navigator.userAgent.match(/IEMobile/i); }, any: function () { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); } };
+
+//RemoveClasses
+function _removeClasses(el, class_name) {
+	for (let i = 0; i < el.length; i++) {
+		el[i].classList.remove(class_name);
+	}
+}
 ;
-// @ @include('files/burger.js', {});
-// @ @include("files/spoller.js",{});
+ // * burger
+    const burger = document.querySelector('.burger');
+    const headerMenu = document.querySelector('.header__list');
+    const wrapper = document.querySelector('body');
+    burger.addEventListener("click", () =>{
+        headerMenu.classList.toggle("header__list_active");
+        burger.classList.toggle("burger_active");
+        wrapper.classList.toggle("hidden");
+    });;
+const spoller = document.querySelectorAll('._spoller');
+
+if(spoller.length != 0){
+    spoller.forEach(element => {
+        element.addEventListener('click',() => {
+            element.classList.toggle('_active');
+            element.nextElementSibling.classList.toggle('_active');
+        });
+    });
+};
 // @ @include("files/select.js",{});
 // @ @include("files/tabs.js",{});
 // @ @include("files/sliders.js",{});

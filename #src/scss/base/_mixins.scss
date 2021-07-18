@@ -53,10 +53,22 @@
 	$addSize: $pcSize - $mobSize;
 	@if $maxSize==1 {
 		font-size: $pcSize + px;
-		@media (max-width: #{$maxWidthContainer + px}) {
-			font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+		@media (max-width: #{$width + px}) {
+			font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$width - 320}));
 		}
 	} @else {
 		font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+	}
+}
+
+@mixin adaptiv-value($value, $pcSize, $mobSize, $maxSize) {
+	$addSize: $pcSize - $mobSize;
+	@if $maxSize==1 {
+		#{$value}: $pcSize + px;
+		@media (max-width: #{$width + px}) {
+			#{$value}: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$width - 320}));
+		}
+	} @else {
+		#{$value}: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
 	}
 }

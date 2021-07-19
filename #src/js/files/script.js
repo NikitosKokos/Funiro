@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 _removeClasses(document.querySelectorAll('.menu__item._hover'), '_hover');
             }
         }
+        if(targetEl.closest('.search-form__icon')){
+            document.querySelector('.search-form').classList.toggle('_active');
+        }else if(!targetEl.closest('.search-form') && document.querySelector('.search-form._active')){
+            document.querySelector('.search-form').classList.remove('_active');
+        }
     }
 
 }); // end

@@ -20,18 +20,32 @@
         align-items: center;
         padding: 5px 0;
         min-height: 125px;
+        position: relative;
+
+        @media (max-width: $md2+px){
+           min-height: 80px;
+        }
+        @media (max-width: $md3+px){
+            min-height: 50px;
+        }
     }
 
     &__main {
         display: flex;
         align-items: center;
         flex: 0 0 494/1240 * 100%;
+
+        @media (max-width: $md2+px){
+           flex: 1 1 auto;
+        }
     }
 
     &__logo {
         font-weight: 700;
         font-size: 24px;
         color: #000000;
+        position: relative;
+        z-index: 5;
     }
 
     &__menu {
@@ -52,6 +66,36 @@
     flex: 0 1 420px;
 
     &__body {
+        @media (max-width: $md3+px){
+           position: fixed;
+           width: 100%;
+           height: 100%;
+           overflow: auto;
+           top: 0;
+           left: -100%;
+           background: #fcf8f3;
+           transition: all .3s ease-in-out;
+           padding: 70px 15px 30px 15px;
+
+            &:before{
+               content: '';
+               position: fixed;
+               width: 100%;
+               height: 50px;
+               top: 0;
+               left: -100%;
+               background: #fcf8f3;
+               transition: all .3s ease-in-out;
+               z-index: 2;
+           }
+
+           &._active{
+               left: 0;
+                &:before{
+                   left: 0;
+               }
+           }
+        }
     }
 
     &__list {
@@ -105,32 +149,53 @@
                 }
            }
         }
+        @media (max-width: $md3+px){
+           margin: 0px 0px 15px 0px;
+
+           &:last-child{
+             margin: 0px 0px 0px 0px;
+           }
+        }
     }
 
     &__link {
         font-weight: 500;
         color: inherit;
         transition: all .3s ease-in-out;
+
+        @media (max-width: $md3+px){
+           font-size: 24px;
+           font-weight: 600;
+        }
     }
 
     &__arrow {
         margin: 0px 0px 0px 8px;
         transition: all .3s ease-in-out;
+        color: inherit;
         font-size: 8px;
         background: transparent;
+
+        @media (max-width: $md3+px){
+            font-size: 14px;
+
+            &._active{
+                transform: rotate(180deg);
+            }
+        }
     }
 
     &__sub-list {
         position: relative;
         background: $orange;
-        z-index: 10;
         padding: 15px;
         flex: 1 1 100%;
         border-radius: 5px;
-        box-shadow: -3px 2px 5px $grey;
+        display: none;
         @media (min-width: $md3+px){
            opacity: 0;
            visibility: hidden;
+           display: block;
            min-width: 200px;
            left: 0;
            pointer-events: none;
@@ -138,12 +203,21 @@
            top: 100%;
            transform: translateY(10px);
            transition: all .3s ease-in-out;
+           z-index: 5;
+        }
+        @media (max-width: $md3+px){
+           margin: 10px -15px 0px -15px;
+           border-radius: 0;
         }
     }
 
     &__sub-item {
         &:not(:last-child) {
             margin: 0px 0px 5px 0px;
+
+            @media (max-width: $md3+px){
+               margin: 0px 0px 10px 0px;
+            }
         }
     }
 
@@ -173,20 +247,55 @@
             }
          }
         }
+        @media (max-width: $md3+px){
+           font-size: 18px;
+           font-weight: 500;
+        }
     }
 }
 
 .search-form {
     max-width: 473px;
 
+    &._active{
+        .search-form__item{
+            opacity: 1;
+            top: 100%;
+            visibility: visible;
+        }
+        .search-form__icon{
+            color: $orange;
+        }
+    }
+
     &__icon {
-        display: none;
+        position: relative;
+        z-index: 5;
+        font-size: 22px;
+        color: #262f56;
+        background: transparent;
+        transition: all .3s ease-in-out;
+
+        @media (min-width: $md2+px){
+           display: none;
+        }
     }
 
     &__item {
         background: $white;
         display: flex;
         align-items: center;
+        @media (max-width: $md2+px){
+           box-shadow: 0 0 5px rgba(212, 209, 205, .3);
+           position: absolute;
+           width: 100%;
+           left: 0;
+           top: -100%;
+           z-index: 5;
+           opacity: 0;
+           visibility: hidden;
+           transition: all .3s ease-in-out;
+        }
     }
 
     &__btn {

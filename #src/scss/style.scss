@@ -5,7 +5,8 @@
 @import "./base/icons"; 
 @import "./base/zeroing";
 @import "./base/ibg"; 
-@import "./base/burger"; 
+@import "./base/burger";
+@import "./base/popup";
 
 // blocks
 @import "./blocks/header";
@@ -32,7 +33,7 @@
   flex: 1 1 auto;
 }
 
-body.hidden{
+body._lock{
   overflow: hidden;
 }
 

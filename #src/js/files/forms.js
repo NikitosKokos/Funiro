@@ -15,7 +15,7 @@ function form_submit(event) {
 		//SendForm
 		form_clean(form);
 		if (message) {
-			popup_open('message-' + message);
+			popup_open(message + '-message');
 			event.preventDefault();
 		}
 	} else {

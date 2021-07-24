@@ -50,7 +50,8 @@
 }
 
 [class^="_icon-"]:before,
-[class*=" _icon-"]:before {
+[class*=" _icon-"]:before,
+.menu-footer__title._init:before {
   font-family: "icons";
   font-style: normal;
   font-weight: normal;
@@ -66,7 +67,8 @@
   display: block;
 }
 
-._icon-arrow-down:before {
+._icon-arrow-down:before,
+.menu-footer__title._init:before {
   content: "\e900";
 }
 
@@ -350,6 +352,19 @@ h6 {
           transform: scale(1);
 }
 
+.popup__title {
+  font-size: 24px;
+  color: #000;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0px 0px 4px 0px;
+}
+
+.popup__descr {
+  color: #898989;
+  line-height: 1.3;
+}
+
 .popup__content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -383,18 +398,19 @@ h6 {
   background-color: #fff;
   padding: 50px;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
 }
 
 .popup__close {
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: -30px;
+  right: -30px;
   cursor: pointer;
   z-index: 30;
   background: url("../img/icons/close.svg") 0 0 no-repeat;
+  background-size: contain;
 }
 
 .header {
@@ -719,7 +735,36 @@ h6 {
 
 .menu-footer__title {
   cursor: text;
-  margin: 0px 0px 0.66667em 0px;
+}
+
+.menu-footer__title._init {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.menu-footer__title._init:before {
+  font-size: 12px;
+  -webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.menu-footer__title._active:before {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .menu-footer__list li:not(:last-child) {
@@ -736,6 +781,7 @@ h6 {
 }
 
 .subscribe__title {
+  display: inline-block;
   margin: 0px 0px 0.66667em 0px;
 }
 
@@ -884,6 +930,10 @@ body._lock {
         -ms-flex: 0 0 33.333%;
             flex: 0 0 33.333%;
   }
+
+  .menu-footer__title {
+    margin: 0px 0px 0.66667em 0px;
+  }
 }
 
 @media (min-width: 991.98px) {
@@ -924,6 +974,24 @@ body._lock {
 
   .subscribe__button:hover {
     background: #e18145;
+  }
+}
+
+@media (max-width: 1282px) {
+  .footer__body {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 290px;
+  }
+
+  .footer__main {
+    grid-column: span 2;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 1282px) and (max-width: 1270px) {
+  .footer__main {
+    margin-bottom: calc(30px + 10 * ((100vw - 320px) / 950));
   }
 }
 
@@ -992,6 +1060,20 @@ body._lock {
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
   }
+
+  .footer__body {
+    display: block;
+  }
+
+  .footer__menu {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 991.98px) and (max-width: 1270px) {
+  .footer__menu {
+    margin-bottom: calc(30px + 10 * ((100vw - 320px) / 950));
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -1048,6 +1130,15 @@ body._lock {
         -ms-transform: rotate(45deg);
             transform: rotate(45deg);
     bottom: 8px;
+  }
+
+  .popup__body {
+    padding: 40px;
+    max-width: none;
+  }
+
+  .popup__close {
+    display: none;
   }
 
   .header__body {
@@ -1126,11 +1217,38 @@ body._lock {
     font-size: 18px;
     font-weight: 500;
   }
+
+  .menu-footer__column {
+    margin-bottom: 30px;
+  }
+
+  .menu-footer__list {
+    display: none;
+    padding: 15px 0px 0px 0px;
+  }
 }
 
 @media (max-width: 767.98px) and (max-width: 1270px) {
   .burger {
     margin-left: calc(15px + 17 * ((100vw - 320px) / 950));
+  }
+
+  .menu-footer__column {
+    margin-bottom: calc(15px + 15 * ((100vw - 320px) / 950));
+  }
+}
+
+@media (max-width: 479.98px) {
+  .popup__title {
+    font-size: 20px;
+  }
+
+  .popup__descr {
+    font-size: 14px;
+  }
+
+  .popup__body {
+    padding: 30px;
   }
 }
 

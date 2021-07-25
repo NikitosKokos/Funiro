@@ -19,4 +19,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    if(document.querySelector('.slider-main__body'))
+    let mainSlider = new Swiper('.slider-main__body', {
+        /*
+        effect: 'fade',
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        */
+        observer: true,
+        observeParents: true,
+        slidesPerView: 1,
+        spaceBetween: 32,
+        watchOverflow: true,
+        speed: 800,
+        loop: true,
+        loopAdditionalSlides: 5,
+        preloadImages: false,
+        parallax: true,
+
+        // Dotts
+        pagination: {
+        	el: '.controls-slider-main__dotts',
+        	clickable: true,
+        },
+        // Arrows
+        navigation: {
+            nextEl: '.slider-main .slider-arrow__next',
+            prevEl: '.slider-main .slider-arrow__prev',
+        },
+        /*
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                autoHeight: true,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            1268: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+            },
+        },
+        */
+        on: {
+            lazyImageReady: function () {
+                ibg();
+            },
+        }
+        // And if we need scrollbar
+        //scrollbar: {
+        //	el: '.swiper-scrollbar',
+        //},
+    });
 }); // end

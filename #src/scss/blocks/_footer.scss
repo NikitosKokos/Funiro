@@ -57,13 +57,6 @@
     }
 }
 
-._footer-title{
-    font-weight: 700;
-    @include adaptiv-value('font-size', 24, 20, 1);
-    line-height: calc(29 / 24);
-    color: #000;
-}
-
 .contacts-footer {
     display: flex;
     flex-direction: column;

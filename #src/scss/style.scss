@@ -7,11 +7,15 @@
 @import "./base/ibg"; 
 @import "./base/burger";
 @import "./base/popup";
+// libs
+@import "./libs/swiper-bundle.min";
 
+@import "./base/ui";
 // blocks
 @import "./blocks/header";
 @import "./blocks/footer";
-// libs
+@import "./blocks/mainSlider";
+
 
 // global styles
 ._container {
@@ -21,7 +25,6 @@
 }
 
 .wrapper {
-	background: #F9F1E7;
 	width: 100%;
 	min-height: 100%;
 	overflow: hidden;

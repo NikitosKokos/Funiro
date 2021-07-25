@@ -1,0 +1,142 @@
+
+.main-slider {
+    background: #FCF8F3;
+    &__container {
+        position: relative;
+
+        @media (min-width: $md2+px){
+            &:before{
+               content: '';
+               background: #F9F1E7;
+               position: absolute;
+               top: 0;
+               width: 100vw;
+               right: 376px;
+               height: 100%;
+           }
+        }
+    }
+
+    &__body {
+        padding: 140px 0px 0px 0px;
+        position: relative;
+        z-index: 2;
+
+        @media (max-width: $md2+px){
+            padding: 80px 0px 0px 0px;
+        }
+
+        @media (max-width: $md3+px){
+            padding: 50px 0px 0px 0px;
+        }
+
+        @media (min-width: $md2+px){
+           display: flex;
+        }
+    }
+
+    &__content {
+        flex: 0 0 494/1240 * 100%;
+    }
+
+    &__slider {
+        flex: 1 1 auto;
+        min-width: 0;
+
+        @media (min-width: $md2+px){
+           padding: 0px 0px 0px 32px;
+        }
+    }
+}
+
+.content-main {
+    position: relative;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.72);
+    padding-left: 15px;
+    padding-right: 15px;
+    @include adaptiv-value('padding-top', 60, 15, 1);
+    @include adaptiv-value('padding-bottom', 60, 15, 1);
+    @media (min-width: $md2+px){
+       @include adaptiv-value('padding', 60, 1, 1);
+       background: rgba(255, 255, 255, 0.9);
+       @supports((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(31px)
+       }
+    }
+
+    &__title {
+        font-weight: 700;
+        @include adaptiv-value('font-size', 56, 24, 1);
+        line-height: 1.2;
+        &:not(:last-child){
+          margin: 0px 0px 16px/56px * 1em 0px;
+        }
+    }
+
+    &__text {
+        @include adaptiv-value('font-size', 20, 16, 1);
+        color: $gray;
+        font-weight: 500;
+        line-height: 1.5;
+        &:not(:last-child){
+            margin: 0px 0px 48px/20px * 1em 0px;
+        }
+    }
+
+    &__button {
+        font-weight: 600;
+        @include adaptiv-value('min-height', 78, 45, 1);
+        @include adaptiv-value('font-size', 20, 16, 1);
+        background: $orange;
+        color: $white;
+        width: 100%;
+
+
+        @media (min-width: $md2+px){
+            &:hover{
+              background: darken($orange, 10%);
+           }
+          }
+    }
+}
+
+.slider-main {
+
+    &__controls {
+        margin: 0px 0px 20px 0px;
+    }
+
+    &__body {
+    }
+
+    &__slide {
+    }
+
+    &__image {
+    }
+
+    &__content {
+    }
+
+    &__title {
+    }
+
+    &__text {
+    }
+
+    &__price {
+    }
+}
+
+.controls-slider-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__dotts {
+    }
+
+    &__arrows {
+    }
+}

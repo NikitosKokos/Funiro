@@ -143,11 +143,30 @@
         line-height: 1.2;
         font-weight: 500;
         transition: all .3s ease-in-out;
+        position: relative;
+
+        &:before{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: $orange;
+            pointer-events: none;
+            opacity: 0;
+            transition: all .3s ease-in-out;
+        }
 
         @media (min-width: $md2+px){
-          &:hover{
-           color: $orange;
-         }
+            &:hover{
+                color: $orange;
+
+                &:before{
+                    width: 100%;
+                    opacity: 1;
+                }
+            }
         }
     }
 }

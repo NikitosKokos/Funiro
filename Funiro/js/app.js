@@ -24,13 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(document.querySelector('.slider-main__body'))
     let mainSlider = new Swiper('.slider-main__body', {
-        /*
-        effect: 'fade',
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-        */
         observer: true,
         observeParents: true,
         slidesPerView: 1,
@@ -52,37 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
             nextEl: '.slider-main .slider-arrow__next',
             prevEl: '.slider-main .slider-arrow__prev',
         },
-        /*
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 0,
-                autoHeight: true,
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            992: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-            },
-            1268: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-            },
-        },
-        */
-        on: {
-            lazyImageReady: function () {
-                ibg();
-            },
-        }
-        // And if we need scrollbar
-        //scrollbar: {
-        //	el: '.swiper-scrollbar',
-        //},
     });
+    // header
+    const header = document.querySelector('.header');
+
+    const callback = function (entries, observer){
+        if(entries[0].isIntersecting){
+            header.classList.remove('_scroll');
+        }else{
+            header.classList.add('_scroll');
+        }
+    }
+
+    const headerObserver = new IntersectionObserver(callback);
+    headerObserver.observe(header);
+
 }); // end
 let btn = document.querySelectorAll('button[type="submit"],input[type="submit"]');
 let forms = document.querySelectorAll('form');

@@ -6,6 +6,17 @@
 	text-align: center;
 	transition: all .3s ease-in-out;
 	min-height: 48px;
+
+	&_white{
+		color: $orange;
+		background: $white;
+		@media (min-width: $md2+px){
+			&:hover{
+				background: $orange;
+				color: $white;
+			}
+		}
+	}
 }
 
 .slider-arrows {
@@ -103,6 +114,13 @@
 	 &:before{
 		transform: scale(1);
 	}
+}
+
+._title{
+	@include adaptiv-value('font-size', 40, 24, 1);
+	font-weight: 700;
+	line-height: 1.2;
+	text-align: center;
 }
 
 ._footer-title{

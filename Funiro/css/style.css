@@ -1981,6 +1981,16 @@ button.swiper-pagination-bullet {
   grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
 }
 
+.products__footer {
+  padding: 32px 0px 0px 0px;
+  text-align: center;
+}
+
+.products__more {
+  border: 1px solid #E89F71;
+  min-width: 245px;
+}
+
 .item-product {
   background: #F4F5F7;
   display: -webkit-box;
@@ -2101,6 +2111,7 @@ button.swiper-pagination-bullet {
   font-weight: normal;
   margin: 0px 0px 0px 16px;
   color: #B0B0B0;
+  text-decoration: line-through;
 }
 
 .actions-product__body {

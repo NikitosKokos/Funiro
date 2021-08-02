@@ -8,6 +8,7 @@ let path = {
     js: project_folder + "/js/",
     img: project_folder + "/img/",
     fonts: project_folder + "/fonts/",
+    json: project_folder + "/json/",
   },
   src: {
     html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
@@ -15,12 +16,14 @@ let path = {
     js: [source_folder + "/js/app.js", source_folder + "/js/vendors.js"],
     img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
     fonts: source_folder + "/fonts/*.ttf",
+    json: source_folder + "/json/*.*",
   },
   watch: {
     html: source_folder + "/**/*.html",
     css: source_folder + "/scss/**/*.scss",
     js: source_folder + "/js/**/*.js",
     img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+    json: source_folder + "/json/*.*",
   },
   clean: "./" + project_folder + "/",
 };
@@ -43,6 +46,7 @@ let { src, dest } = require("gulp"),
   ttf2woff = require("gulp-ttf2woff"),
   ttf2woff2 = require("gulp-ttf2woff2"),
   fonter = require("gulp-fonter");
+  plumber = require('gulp-plumber');
 
 function browserSync(params) {
   browsersync.init({
@@ -52,6 +56,11 @@ function browserSync(params) {
     port: 3000,
     notify: false,
   });
+}
+function json() {
+  return src(path.src.json)
+  .pipe(plumber())
+  .pipe(dest(path.build.json));
 }
 function html() {
   return src(path.src.html)
@@ -179,6 +188,7 @@ function watchFiles(params) {
   gulp.watch([path.watch.css], css);
   gulp.watch([path.watch.js], js);
   gulp.watch([path.watch.img], images);
+  gulp.watch([path.watch.json], json);
 }
 function clean(params) {
   return del(path.clean);
@@ -186,7 +196,7 @@ function clean(params) {
 
 let build = gulp.series(
   clean,
-  gulp.parallel(js, css, html, images, fonts),
+  gulp.parallel(js, css, html, images, fonts, json),
   fontsStyle
 );
 let watch = gulp.parallel(build, watchFiles, browserSync);
@@ -194,6 +204,7 @@ let watch = gulp.parallel(build, watchFiles, browserSync);
 exports.fontsStyle = fontsStyle;
 exports.fonts = fonts;
 exports.images = images;
+exports.json = json;
 exports.js = js;
 exports.css = css;
 exports.html = html;

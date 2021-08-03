@@ -175,6 +175,21 @@ function ibg() {
   }
 }
 
+let observer = new MutationObserver((mutationRecords) => {
+  mutationRecords.forEach(item => {
+    if(item.addedNodes[0]){
+      if(item.addedNodes[0].classList){
+        if(item.addedNodes[0].classList.contains('_ibg')) ibg()
+      }
+    }
+  });
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+});
+
 ibg();
 //=================
 // isMobile

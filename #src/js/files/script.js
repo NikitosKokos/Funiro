@@ -27,6 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
             addToCart(targetEl, productId);
             e.preventDefault();
         }
+
+        if(targetEl.classList.contains('cart-header__icon') || targetEl.closest('.cart-header__icon')){
+            if(document.querySelector('.cart-list').children.length > 0){
+                document.querySelector('.cart-header').classList.toggle('_active');
+            }
+            e.preventDefault();
+        }else if(!targetEl.closest('.cart-header') && !targetEl.classList.contains('actions-product__button')){
+            document.querySelector('.cart-header').classList.remove('_active');
+        }
+        
+        if(targetEl.classList.contains('cart-list__delete')){
+            const productId = targetEl.closest('.cart-list__item').dataset.cartPid;
+            updateCart(targetEl, productId, false);
+            e.preventDefault();
+        }
     }
 
     // load more products
@@ -178,11 +193,70 @@ document.addEventListener('DOMContentLoaded', () => {
             height: 0px;
             opacity: 0;
             `;
+
+            productImageFly.addEventListener('transitionend', () => {
+                if(productBtn.classList.contains('_fly')){
+                    productImageFly.remove();
+                    updateCart(productBtn, productId);
+                    productBtn.classList.remove('_fly');
+                }
+            });
+        }
+    }
+
+    function updateCart(productBtn, productId, productAdd = true) {
+        const cart = document.querySelector('.cart-header');
+        const cartIcon = cart.querySelector('.cart-header__icon');
+        const cartQuantity = cartIcon.querySelector('span');
+        const cartProduct = document.querySelector(`[data-cart-pid="${productId}"]`);
+        const cartList = document.querySelector('.cart-list');
+
+        if(productAdd){
+            if(cartQuantity){
+                cartQuantity.innerHTML = ++cartQuantity.innerHTML;
+            }else{
+                cartIcon.insertAdjacentHTML('beforeend', '<span>1</span>')
+            }
+        
+            if(!cartProduct){
+                const product = document.querySelector(`[data-pid="${productId}"]`);
+                const cartProductImage = product.querySelector('.item-product__image').innerHTML;
+                const cartProductTitle = product.querySelector('.item-product__title').innerHTML;
+                const cartProductContent = `
+                <a href="" class='cart-list__image _ibg'>${cartProductImage}</a>
+                <div class='cart-list__body'>
+                    <a href="" class='cart-list__title'>${cartProductTitle}</a>
+                    <div class='cart-list__quantity'>Quantity: <span>1</span></div>
+                    <a href='' class='cart-list__delete'>Delete</a>
+                </div>`;
+                cartList.insertAdjacentHTML('beforeend', `<li data-cart-pid='${productId}' class='cart-list__item'>${cartProductContent}</li>`);
+                ibg();
+            }else{
+                const cartProductQuantity = cartProduct.querySelector('.cart-list__quantity span');
+                cartProductQuantity.innerHTML = ++cartProductQuantity.innerHTML;
+            }
+
+            productBtn.classList.remove('_hold');
+        }else{
+            const cartProductQuantity = cartProduct.querySelector('.cart-list__quantity span');
+            cartProductQuantity.innerHTML = --cartProductQuantity.innerHTML;
+            if(!parseInt(cartProductQuantity.innerHTML)){
+                cartProduct.remove();
+            }
+
+            const cartQuantityValue = --cartQuantity.innerHTML;
+
+            if(cartQuantityValue){
+                cartQuantity.innerHTML = cartQuantityValue;
+            }else{
+                cartQuantity.remove();
+                cart.classList.remove('_active');
+            }
         }
     }
 
     if(document.querySelector('.slider-main__body'))
-    let mainSlider = new Swiper('.slider-main__body', {
+    new Swiper('.slider-main__body', {
         observer: true,
         observeParents: true,
         slidesPerView: 1,

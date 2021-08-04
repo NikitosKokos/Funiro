@@ -24,6 +24,11 @@
     &__more{
         border: 1px solid $orange;
         min-width: 245px;
+
+        &._hold{
+            opacity: 0.4;
+            cursor: default;
+        }
     }
 }
 
@@ -160,6 +165,11 @@
         flex: 1 1 100%;
         &:not(:last-child){
           margin: 0px 0px 24px 0px;
+        }
+
+        &._hold{
+            opacity: 0.4;
+            cursor: default;
         }
     }
 

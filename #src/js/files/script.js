@@ -307,6 +307,45 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         });
     }
+
+    if(document.querySelector('.slider-tips__body')){
+        new Swiper('.slider-tips__body', {
+            observer: true,
+            observeParents: true,
+            slidesPerView: 3,
+            spaceBetween: 32,
+            watchOverflow: true,
+            speed: 800,
+            loop: true,
+            preloadImages: false,
+
+            breakpoints: {
+                320: {
+                    slidesPerView: 1.1,
+                    spaceBetween: 15,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                },
+            },
+
+            // Dotts
+            pagination: {
+                el: '.slider-tips__dotts',
+                clickable: true,
+            },
+            // Arrows
+            navigation: {
+                nextEl: '.slider-tips .slider-arrow__next',
+                prevEl: '.slider-tips .slider-arrow__prev',
+            },
+        });
+    }
     // header
     const header = document.querySelector('.header');
 

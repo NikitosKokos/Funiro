@@ -1178,6 +1178,7 @@ button.swiper-pagination-bullet {
 }
 
 .slider-arrow {
+  pointer-events: auto;
   border-radius: 50%;
   height: 48px;
   background: rgba(232, 159, 113, 0.3);
@@ -2325,6 +2326,10 @@ button.swiper-pagination-bullet {
       align-self: flex-start;
 }
 
+.slider-rooms {
+  position: relative;
+}
+
 .slider-rooms__body {
   overflow: visible;
   position: relative;
@@ -2355,6 +2360,49 @@ button.swiper-pagination-bullet {
   height: 100%;
 }
 
+.slider-rooms__content {
+  position: absolute;
+  color: inherit;
+  max-width: 240px;
+  left: 24px;
+  bottom: 24px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+  .slider-rooms__content {
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(31px);
+            backdrop-filter: blur(31px);
+  }
+}
+
+.slider-rooms__content:before {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
+  width: 48px;
+  height: 48px;
+  background: #E89F71;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
 .slider-rooms__image {
   -webkit-transition: all .8s ease 0s;
   -o-transition: all .8s ease 0s;
@@ -2364,6 +2412,48 @@ button.swiper-pagination-bullet {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.slider-rooms__title {
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.slider-rooms__arrows {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: calc(100% - 48px);
+  left: 24px;
+  z-index: 5;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.label-slider {
+  display: grid;
+  grid-template-columns: auto 27px auto;
+  gap: 8px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  color: #616161;
+}
+
+.label-slider:not(:last-child) {
+  margin: 0px 0px 8px 0px;
+}
+
+.label-slider__line {
+  height: 1px;
+  background: #616161;
 }
 
 ._container {
@@ -2478,6 +2568,14 @@ body._lock {
 
   .slider-rooms__image {
     height: 83%;
+  }
+
+  .slider-rooms__dotts {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    left: 396px;
+    z-index: 5;
   }
 }
 
@@ -2607,6 +2705,13 @@ body._lock {
 
   .rooms__body {
     padding-right: 80px;
+  }
+}
+
+@media (min-width: 1282px) {
+  .slider-rooms__arrows {
+    width: calc(100% + 48px);
+    left: -24px;
   }
 }
 
@@ -2754,6 +2859,22 @@ body._lock {
   .slider-rooms__slide {
     min-height: calc(400px + 185 * ((100vw - 320px) / 950));
   }
+
+  .slider-rooms__content {
+    left: calc(15px + 9 * ((100vw - 320px) / 950));
+  }
+
+  .slider-rooms__content {
+    bottom: calc(15px + 9 * ((100vw - 320px) / 950));
+  }
+
+  .slider-rooms__content {
+    padding: calc(15px + 17 * ((100vw - 320px) / 950));
+  }
+
+  .slider-rooms__title {
+    font-size: calc(24px + 4 * ((100vw - 320px) / 950));
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -2832,6 +2953,10 @@ body._lock {
 
   .advantages__item {
     min-width: 280px;
+  }
+
+  .rooms__body {
+    margin: 0px 0px 30px 0px;
   }
 }
 
@@ -3014,6 +3139,13 @@ body._lock {
   .advantages__icon {
     padding: 0px 15px 0px 0px;
   }
+
+  .slider-rooms__dotts {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 15px 0px 0px 0px;
+  }
 }
 
 @media (max-width: 767.98px) and (max-width: 1270px) {
@@ -3037,6 +3169,18 @@ body._lock {
 
   .popup__body {
     padding: 30px;
+  }
+
+  .rooms__slider {
+    margin: 0 -15px;
+  }
+
+  .slider-rooms__slide {
+    width: 100%;
+  }
+
+  .slider-rooms__arrows {
+    display: none;
   }
 }
 
@@ -3127,6 +3271,10 @@ body._lock {
   }
 
   .rooms__button:hover {
+    background: #e18145;
+  }
+
+  .slider-rooms__content:hover:before {
     background: #e18145;
   }
 }
